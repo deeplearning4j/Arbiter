@@ -74,6 +74,48 @@
     </properties>
 
     <profiles>
+        <profile>
+            <id>local-jfrog</id>
+            <activation>
+                <property>
+                    <name>local.jfrog</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>snapshots</id>
+                    <name>local-jfrog</name>
+                    <url>http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8081/artifactory/libs-snapshot-local</url>
+                </snapshotRepository>
+                <repository>
+                    <id>snapshots</id>
+                    <name>local-jfrog</name>
+                    <url>http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8081/artifactory/libs-release-local</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>local-nexus</id>
+            <activation>
+                <property>
+                    <name>local.nexus</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>local-nexus</id>
+                    <name>local-nexus</name>
+                    <url>http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8088/nexus/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>local-nexus</id>
+                    <name>local-nexus</name>
+                    <url>http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8088/nexus/content/repositories/releases</url>
+                </repository>
+            </distributionManagement>
+        </profile>
 
         <profile>
             <id>qa</id>
