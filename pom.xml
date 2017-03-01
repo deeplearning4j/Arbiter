@@ -14,7 +14,8 @@
   ~    limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.deeplearning4j</groupId>
     <artifactId>arbiter</artifactId>
@@ -74,91 +75,157 @@
     </properties>
 
     <profiles>
-
         <profile>
-            <id>qa</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>2.10</version>
-                        <executions>
-                            <execution>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>copy-dependencies</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>release-sign-artifacts</id>
+            <id>local-nexus</id>
             <activation>
                 <property>
-                    <name>performRelease</name>
-                    <value>true</value>
+                    <name>local.software.repository</name>
+                    <value>local-nexus</value>
                 </property>
             </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>local-nexus</id>
+                    <name>local-nexus</name>
+                    <url>
+                        http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8088/nexus/content/repositories/snapshots
+                    </url>
+                </snapshotRepository>
+                <repository>
+                    <id>local-nexus</id>
+                    <name>local-nexus</name>
+                    <url>
+                        http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8088/nexus/service/local/staging/deploy/maven2
+                    </url>
+                </repository>
+            </distributionManagement>
             <build>
-
                 <plugins>
                     <plugin>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <artifactId>maven-deploy-plugin</artifactId>
                         <configuration>
-                            <passphrase>${gpg.passphrase}</passphrase>
+                            <skip>true</skip>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.6</version>
                         <executions>
                             <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
                                 <goals>
-                                    <goal>sign</goal>
+                                    <goal>deploy</goal>
                                 </goals>
                             </execution>
                         </executions>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>local-nexus</serverId>
+                            <nexusUrl>http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8088/nexus/</nexusUrl>
+                            <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
         <profile>
-            <id>release</id>
+            <id>local-jfrog</id>
+            <activation>
+                <property>
+                    <name>local.software.repository</name>
+                    <value>local-jfrog</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>local-jfrog</id>
+                    <name>local-jfrog</name>
+                    <url>http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8081/artifactory/libs-snapshot-local
+                    </url>
+                </snapshotRepository>
+                <repository>
+                    <id>local-jfrog</id>
+                    <name>local-jfrog</name>
+                    <url>http://ec2-54-200-65-148.us-west-2.compute.amazonaws.com:8081/artifactory/libs-release-local
+                    </url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>Bintray-artifactory</id>
+            <activation>
+                <property>
+                    <name>local.software.repository</name>
+                    <value>bintray-jfrog</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>bintray-deeplearning4j-maven</id>
+                    <name>deeplearning4j-maven-snapshots</name>
+                    <url>https://oss.jfrog.org/artifactory/oss-snapshot-local</url>
+                </snapshotRepository>
+                <repository>
+                    <id>bintray-deeplearning4j-maven</id>
+                    <name>deeplearning4j-maven-releases</name>
+                    <url>https://api.bintray.com/maven/deeplearning4j/maven/${project.artifactId}/;publish=1</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>sonatype-nexus</id>
+            <activation>
+                <property>
+                    <name>local.software.repository</name>
+                    <value>sonatype-nexus</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>sonatype-nexus-snapshots</id>
+                    <name>Sonatype Nexus snapshot repository</name>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>sonatype-nexus-snapshots</id>
+                    <name>Nexus Release Repository</name>
+                    <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
                     </plugin>
                     <plugin>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.10.4</version>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.6</version>
                         <executions>
                             <execution>
-                                <id>attach-javadocs</id>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
                                 <goals>
-                                    <goal>jar</goal>
+                                    <goal>deploy</goal>
                                 </goals>
                             </execution>
                         </executions>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>sonatype-nexus-snapshots</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
+
     </profiles>
 
     <scm>
@@ -169,7 +236,6 @@
     </scm>
 
 
-
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -177,7 +243,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
 
 
     <build>
@@ -196,35 +261,15 @@
             </plugin>
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.6</version>
-                <executions>
-                    <execution>
-                        <id>default-deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>nexus-releases</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
-                </configuration>
             </plugin>
         </plugins>
 
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.10.4</version>
@@ -240,7 +285,6 @@
                         </execution>
                     </executions>
                 </plugin>
-
 
 
                 <plugin>
@@ -263,14 +307,16 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5.3</version>
                     <configuration>
                         <mavenExecutorId>forked-path</mavenExecutorId>
-                        <!-- To deploy to an open staging repository: -Darguments=-DstagingRepositoryId=orgdeeplearning4j-xxxx -->
-                        <arguments> -Psonatype-oss-release -DskipTests ${arguments}</arguments>
                         <localCheckout>true</localCheckout>
                         <pushChanges>false</pushChanges>
+                        <tagNameFormat>${project.name}-@{project.version}-intropro</tagNameFormat>
+                        <!--<arguments>-Dmaven.deploy.skip=true -DskipTests -Denv.LIBND4J_HOME=${LIBND4J_HOME}</arguments>-->
+                        <arguments>${arguments}</arguments>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -301,7 +347,6 @@
 
         </pluginManagement>
     </build>
-
 
 
 </project>
