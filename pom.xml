@@ -159,6 +159,41 @@
                 </plugins>
             </build>
         </profile>
+        <!-- Run syntax checks, but only on non-window platforms -->
+        <profile>
+          <id>syntaxChecks</id>
+          <activation>
+            <os>
+              <family>!windows</family>
+            </os>
+          </activation>
+          <build>
+            <plugins>
+
+              <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <inherited>false</inherited>
+                <executions>
+                  <execution>
+                    <id>Check syntax</id>
+                    <phase>generate-sources</phase>
+                    <goals>
+                      <goal>exec</goal>
+                    </goals>
+                    <configuration>
+                      <executable>${session.executionRootDirectory}/contrib/maybeFormat.sh</executable>
+                      <arguments>
+                        <argument>fromMaven</argument>
+                      </arguments>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
+            </plugins>
+          </build>
+        </profile>
     </profiles>
 
     <scm>
@@ -221,6 +256,20 @@
                     <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
                 </configuration>
             </plugin>
+
+            <plugin>
+              <groupId>net.revelc.code.formatter</groupId>
+              <artifactId>formatter-maven-plugin</artifactId>
+              <version>2.0.0</version>
+              <configuration>
+                <configFile>${session.executionRootDirectory}/contrib/formatter.xml</configFile>
+                <directories>
+                  <directory>arbiter-deeplearning4j</directory>
+                  <directory>arbiter-core</directory>
+                </directories>
+              </configuration>
+            </plugin>
+
         </plugins>
 
         <pluginManagement>
