@@ -15,11 +15,11 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui.resources;
+package org.deeplearning4j.arbiter.optimize.resources;
 
-import org.deeplearning4j.arbiter.optimize.ui.UpdateStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.deeplearning4j.arbiter.optimize.resources.ui.UpdateStatus;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

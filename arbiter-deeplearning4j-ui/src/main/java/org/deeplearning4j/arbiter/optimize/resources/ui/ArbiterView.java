@@ -15,22 +15,20 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui.misc;
+package org.deeplearning4j.arbiter.optimize.resources.ui;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import io.dropwizard.views.View;
 
-import javax.ws.rs.ext.ContextResolver;
+import javax.ws.rs.GET;
 
-public class ObjectMapperProvider implements ContextResolver<ObjectMapper> {
-    @Override
-    public ObjectMapper getContext(Class<?> type) {
-        final ObjectMapper result = new ObjectMapper();
-        result.registerModule(module());
-        return result;
+public class ArbiterView extends View {
+
+    protected ArbiterView() {
+        super("arbiter.ftl");
     }
 
-    public static SimpleModule module() {
-        return new SimpleModule("module");
+    @GET
+    public String get(){
+        return "test2";
     }
 }

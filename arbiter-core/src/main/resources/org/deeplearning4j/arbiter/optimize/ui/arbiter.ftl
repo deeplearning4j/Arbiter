@@ -120,7 +120,7 @@
             padding-bottom: 20px;
         }
 
-        #accordion .ui-accordion-header, #accordion2 .ui-accordion-header {
+        #accordion .org.deeplearning4j.arbiter.optimize.resources.ui-accordion-header, #accordion2 .org.deeplearning4j.arbiter.optimize.resources.ui-accordion-header {
             background-color: /*headingbgcolor*/#063E53;      /*Color when collapsed*/
             color: /*headingtextcolor*/white;
             font-family: Georgia, Times, 'Times New Roman', serif;
@@ -132,12 +132,12 @@
         }
 
         /*
-        #accordion .ui-accordion-header.ui-state-active {
+        #accordion .org.deeplearning4j.arbiter.optimize.resources.ui-accordion-header.org.deeplearning4j.arbiter.optimize.resources.ui-state-active {
             background-color: pink;
             background-image: none;
         }*/
 
-        #accordion .ui-accordion-content {
+        #accordion .org.deeplearning4j.arbiter.optimize.resources.ui-accordion-content {
             width: 100%;
             background-color: white;    /*background color of accordian content (elements in front may have different color */
             color: black;  /* text etc color */
@@ -171,12 +171,12 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/org.deeplearning4j.arbiter.optimize.resources.ui/1.11.4/themes/smoothness/jquery-org.deeplearning4j.arbiter.optimize.resources.ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="//code.jquery.com/org.deeplearning4j.arbiter.optimize.resources.ui/1.11.4/jquery-org.deeplearning4j.arbiter.optimize.resources.ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="/assets/dl4j-ui.js"></script>
+<script src="/assets/dl4j-org.deeplearning4j.arbiter.optimize.resources.ui.js"></script>
 
 <script>
     //Store last update times:
@@ -772,7 +772,7 @@
 <div style="width:1400px; margin-left:auto; margin-right:auto;">
     <div class="outerelements" id="status">
         <div id="accordion" class="hcol2">
-            <h3 class="hcol2 headingcolor ui-accordion-header">Summary</h3>
+            <h3 class="hcol2 headingcolor org.deeplearning4j.arbiter.optimize.resources.ui-accordion-header">Summary</h3>
             <div class="statusdiv" id="statusdiv">
             </div>
         </div>
@@ -780,7 +780,7 @@
 
     <div class="outerelements" id="settings">
         <div id="accordion2">
-            <h3 class="ui-accordion-header headingcolor">Optimization Settings</h3>
+            <h3 class="org.deeplearning4j.arbiter.optimize.resources.ui-accordion-header headingcolor">Optimization Settings</h3>
             <div class="settingsdiv" id="settingsdiv">
             </div>
         </div>

@@ -15,7 +15,7 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.listener;
+package org.deeplearning4j.arbiter.optimize.listener;
 
 import org.deeplearning4j.arbiter.optimize.runner.Status;
 import org.deeplearning4j.arbiter.optimize.runner.listener.candidate.UICandidateStatusListener;
@@ -35,12 +35,14 @@ import org.deeplearning4j.ui.components.table.ComponentTable;
 import org.deeplearning4j.ui.components.table.style.StyleTable;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Listener designed to report status to Arbiter UI
- * Combines listener functionality for
+ * Combines org.deeplearning4j.arbiter.optimize.listener functionality for
  * both early stopping AND
  * iteration listeners
  */
@@ -229,8 +231,8 @@ public abstract class BaseUIStatusReportingListener<T extends Model> implements 
         if (additionalComponents != null) {
             Collections.addAll(components, additionalComponents);
         }
-
-        uiListener.reportStatus(status, components.toArray(new Component[components.size()]));
+        Component[] components1 =   components.toArray(new Component[components.size()]);
+        uiListener.reportStatus(status,components1);
 
         lastReportTime = System.currentTimeMillis();
     }

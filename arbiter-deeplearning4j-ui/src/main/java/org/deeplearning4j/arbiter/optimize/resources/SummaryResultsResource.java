@@ -15,7 +15,7 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui.resources;
+package org.deeplearning4j.arbiter.optimize.resources;
 
 import org.deeplearning4j.arbiter.optimize.runner.CandidateStatus;
 import org.slf4j.Logger;

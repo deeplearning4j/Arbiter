@@ -15,7 +15,7 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui.listener;
+package org.deeplearning4j.arbiter.optimize.listener;
 
 import org.deeplearning4j.arbiter.optimize.api.OptimizationResult;
 import org.deeplearning4j.arbiter.optimize.api.ParameterSpace;
@@ -27,7 +27,6 @@ import org.deeplearning4j.arbiter.optimize.runner.CandidateStatus;
 import org.deeplearning4j.arbiter.optimize.runner.IOptimizationRunner;
 import org.deeplearning4j.arbiter.optimize.runner.Status;
 import org.deeplearning4j.arbiter.optimize.runner.listener.runner.OptimizationRunnerStatusListener;
-import org.deeplearning4j.arbiter.optimize.ui.ArbiterUIServer;
 import org.deeplearning4j.ui.api.Component;
 import org.deeplearning4j.ui.api.LengthUnit;
 import org.deeplearning4j.ui.components.chart.ChartLine;
@@ -37,13 +36,14 @@ import org.deeplearning4j.ui.components.component.ComponentDiv;
 import org.deeplearning4j.ui.components.component.style.StyleDiv;
 import org.deeplearning4j.ui.components.table.ComponentTable;
 import org.deeplearning4j.ui.components.table.style.StyleTable;
+import org.deeplearning4j.arbiter.optimize.resources.ui.ArbiterUIServer;
 
 import java.awt.*;
 import java.util.*;
 import java.util.List;
 
 /**
- * A listener for the optimization runner that reports results to the UI
+ * A org.deeplearning4j.arbiter.optimize.listener for the optimization runner that reports results to the UI
  *
  * @author Alex Black
  */
