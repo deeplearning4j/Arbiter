@@ -15,7 +15,7 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui;
+package org.deeplearning4j.arbiter.optimize.resources.ui;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -31,7 +31,6 @@ import io.dropwizard.views.ViewBundle;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.deeplearning4j.arbiter.optimize.runner.CandidateStatus;
-import org.deeplearning4j.arbiter.optimize.ui.resources.*;
 import org.deeplearning4j.arbiter.util.ClassPathResource;
 import org.deeplearning4j.arbiter.util.WebUtils;
 import org.deeplearning4j.ui.api.Component;
@@ -39,8 +38,7 @@ import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.nd4j.shade.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.deeplearning4j.arbiter.optimize.resources.*;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -105,7 +103,7 @@ public class ArbiterUIServer extends Application<ArbiterUIConfig> {
         Format is JSON; POST to server is executed via the WebTarget.post(...) methods here
         JSON serialization is done automatically on java objects using Jackson
         These paths are set via the LastUpdateResource, SummaryStatusResource, ConfigResource
-        An instance of each of these resources classes must be registered with Jersey
+        An instance of each of these org.deeplearning4j.arbiter.optimize.resources classes must be registered with Jersey
 
       TODO: Work out how to support cancelling of tasks from UI
      */
@@ -168,7 +166,7 @@ public class ArbiterUIServer extends Application<ArbiterUIConfig> {
 
     @Override
     public String getName() {
-        return "arbiter-ui";
+        return "arbiter-org.deeplearning4j.arbiter.optimize.resources.ui";
     }
 
     @Override
@@ -218,7 +216,7 @@ public class ArbiterUIServer extends Application<ArbiterUIConfig> {
         final ArbiterUIResource resource = new ArbiterUIResource();
         environment.jersey().register(resource);
 
-        //Register our resources
+        //Register our org.deeplearning4j.arbiter.optimize.resources
         environment.jersey().register(new LastUpdateResource());
         environment.jersey().register(new SummaryStatusResource());
         environment.jersey().register(new ConfigResource());

@@ -19,7 +19,6 @@ package org.deeplearning4j.arbiter.optimize.api;
 
 import org.deeplearning4j.arbiter.optimize.api.data.DataProvider;
 import org.deeplearning4j.arbiter.optimize.api.score.ScoreFunction;
-import org.deeplearning4j.arbiter.optimize.runner.listener.candidate.UICandidateStatusListener;
 
 import java.util.concurrent.Callable;
 
@@ -41,9 +40,7 @@ public interface TaskCreator<C, M, D, A> {
      * @param candidate      Candidate (model) configuration to be trained
      * @param dataProvider   DataProvider, for the data
      * @param scoreFunction  Score function to be used to evaluate the model
-     * @param statusListener Status listener, that can be used to provide status updates to the UI, as the task executes
      * @return A callable that returns an OptimizationResult, once optimization is complete
      */
-    Callable<OptimizationResult<C, M, A>> create(Candidate<C> candidate, DataProvider<D> dataProvider, ScoreFunction<M, D> scoreFunction,
-                                                 UICandidateStatusListener statusListener);
+    Callable<OptimizationResult<C, M, A>> create(Candidate<C> candidate, DataProvider<D> dataProvider, ScoreFunction<M, D> scoreFunction);
 }

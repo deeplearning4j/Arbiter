@@ -15,7 +15,7 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui.resources;
+package org.deeplearning4j.arbiter.optimize.resources;
 
 import org.deeplearning4j.arbiter.optimize.serde.jackson.JsonMapper;
 import org.deeplearning4j.ui.api.Component;
@@ -28,27 +28,26 @@ import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**Summary stats: number of completed tasks etc
- */
-@Path("/summary")
+@Path("/config")
 @Produces(MediaType.APPLICATION_JSON)
-public class SummaryStatusResource {
-    public static Logger log = LoggerFactory.getLogger(SummaryStatusResource.class);
+public class ConfigResource {
+
+    public static final Logger log = LoggerFactory.getLogger(ConfigResource.class);
+    private Component component = null;
 
     private static final int maxWarnCount = 5;
     private AtomicInteger warnCount = new AtomicInteger(0);
 
-    private Component component = null;
-
     @GET
-    public Response getStatus(){
-        log.trace("Get with elements: {}",component);
+    public Response getConfig(){
+        log.trace("GET for config with current component: {}",component);
+
         String str = "";
         try{
             str = JsonMapper.getMapper().writeValueAsString(component);
         } catch (Exception e){
             if(warnCount.getAndIncrement() < maxWarnCount){
-                log.warn("Error getting summary status update", e);
+                log.warn("Error getting configuration UI info", e);
             }
         }
         Response r = Response.ok(str).build();
@@ -57,20 +56,20 @@ public class SummaryStatusResource {
 
     @POST
     @Path("/update")
-    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.TEXT_PLAIN)
-    public Response update(String component){
-        log.trace("Post with new elements: {}",component);
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(String componentStr){
+        log.trace("POST for config with component: {}",component);
 
-        if(component == null || component.isEmpty()){
+        if(componentStr == null || componentStr.isEmpty()){
             return Response.ok(Collections.singletonMap("status", "ok")).build();
         }
 
         try{
-            this.component = JsonMapper.getMapper().readValue(component, Component.class);
+            this.component = JsonMapper.getMapper().readValue(componentStr, Component.class);
         } catch (Exception e) {
             if(warnCount.getAndIncrement() < maxWarnCount){
-                log.warn("Error posting summary status update", e);
+                log.warn("Error posting config stats update", e);
             }
         }
 

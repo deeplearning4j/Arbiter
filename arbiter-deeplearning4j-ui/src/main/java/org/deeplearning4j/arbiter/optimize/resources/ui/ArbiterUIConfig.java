@@ -15,24 +15,14 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui.listener;
+package org.deeplearning4j.arbiter.optimize.resources.ui;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import io.dropwizard.Configuration;
 
-@AllArgsConstructor @Data
-public class SummaryStatus {
+/**
+ * Dropwizard configuration for the Arbiter UI
+ */
+public class ArbiterUIConfig extends Configuration {
 
-    public SummaryStatus(){
-        //No arg constructor required for jersey/jackson
-    }
-
-    private long currentTime;
-    private double bestScore;
-    private long bestScoreTime;
-    private int numCompleted;
-    private int numQueued;
-    private int numFailed;
-    private int numTotal;
 
 }

@@ -15,21 +15,24 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui;
+package org.deeplearning4j.arbiter.optimize.listener;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import io.dropwizard.views.View;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Path("/arbiter")
-@Produces(MediaType.TEXT_HTML)
-public class ArbiterUIResource {
+@AllArgsConstructor @Data
+public class SummaryStatus {
 
-    @GET
-    public View get() {
-        return new ArbiterView();
+    public SummaryStatus(){
+        //No arg constructor required for jersey/jackson
     }
+
+    private long currentTime;
+    private double bestScore;
+    private long bestScoreTime;
+    private int numCompleted;
+    private int numQueued;
+    private int numFailed;
+    private int numTotal;
 
 }

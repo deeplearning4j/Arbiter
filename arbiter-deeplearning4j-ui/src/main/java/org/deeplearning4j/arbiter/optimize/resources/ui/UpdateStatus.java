@@ -15,7 +15,7 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.optimize.ui;
+package org.deeplearning4j.arbiter.optimize.resources.ui;
 
 import lombok.AllArgsConstructor;
 
@@ -83,6 +83,6 @@ public class UpdateStatus {
     }
 
     public String toString() {
-        return "org.arbiter.optimize.ui.UpdateStatus(statusUpdateTime=" + this.statusUpdateTime + ", settingsUpdateTime=" + this.settingsUpdateTime + ", resultsUpdateTime=" + this.resultsUpdateTime + ")";
+        return "org.arbiter.optimize.org.deeplearning4j.arbiter.optimize.resources.ui.UpdateStatus(statusUpdateTime=" + this.statusUpdateTime + ", settingsUpdateTime=" + this.settingsUpdateTime + ", resultsUpdateTime=" + this.resultsUpdateTime + ")";
     }
 }

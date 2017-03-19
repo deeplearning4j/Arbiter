@@ -47,8 +47,6 @@ public class ArbiterCliGenerator {
     private String searchSpacePath = null;
     @Parameter(names = {"--candidateType"},required = true)
     private String candidateType = null;
-    @Parameter(names = {"--discretizationCount"})
-    private int discretizationCount = 5;
     @Parameter(names = {"--gridSearchOrder"})
     private String gridSearchOrder = null;
     @Parameter(names = {"--neuralNetType"},required = true)

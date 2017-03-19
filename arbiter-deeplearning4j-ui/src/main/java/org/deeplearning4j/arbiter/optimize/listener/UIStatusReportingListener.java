@@ -15,7 +15,7 @@
  *  *    limitations under the License.
  *
  */
-package org.deeplearning4j.arbiter.listener;
+package org.deeplearning4j.arbiter.optimize.listener;
 
 import org.deeplearning4j.arbiter.optimize.runner.listener.candidate.UICandidateStatusListener;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
@@ -23,7 +23,7 @@ import org.deeplearning4j.ui.components.text.ComponentText;
 
 /**
  * Listener designed to report status to Arbiter UI - used for MultiLayerNetworks
- * Combines listener functionality for both early stopping AND iteration listeners
+ * Combines org.deeplearning4j.arbiter.optimize.listener functionality for both early stopping AND iteration listeners
  */
 public class UIStatusReportingListener extends BaseUIStatusReportingListener<MultiLayerNetwork> {
 

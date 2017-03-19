@@ -31,7 +31,7 @@
 		</fileSet>
 
 		<fileSet>
-			<directory>src/main/resources/bin/</directory>
+			<directory>src/main/org.deeplearning4j.arbiter.optimize.resources/bin/</directory>
 			<outputDirectory>bin</outputDirectory>
 			<includes>
 				<include>arbiter</include>
