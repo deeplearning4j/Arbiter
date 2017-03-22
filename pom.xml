@@ -39,20 +39,6 @@
         <maven>3.0</maven>
     </prerequisites>
 
-<!--    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus snapshot repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>nexus-releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>-->
-
-
     <description>Model Evaluation and Testing</description>
 
     <properties>
@@ -191,7 +177,7 @@
                     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
                 <repository>
-                    <id>sonatype-nexus-snapshots</id>
+                    <id>nexus-releases</id>
                     <name>Nexus Release Repository</name>
                     <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                 </repository>
@@ -350,33 +336,6 @@
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.0.1</version>
             </plugin>
-           <!-- <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.6</version>
-                <executions>
-                    <execution>
-                        <id>default-deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>nexus-releases</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
-                </configuration>
-            </plugin>-->
 
             <plugin>
               <groupId>net.revelc.code.formatter</groupId>
