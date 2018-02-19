@@ -118,6 +118,7 @@ public class ComputationGraphTaskCreator implements TaskCreator {
                             startTime, startTime, System.currentTimeMillis(), candidate.getFlatParameters(), null);
                     for(StatusListener sl : listeners){
                         try{
+                            log.info("Starting listener {} - thread {} - {}", sl.getClass().getSimpleName(), Thread.currentThread().getId(), Thread.currentThread().getName());
                             sl.onCandidateStatusChange(ci, runner, result);
                         } catch (Exception e){
                             log.error("Error in status listener {} for candidate {}", sl, candidate.getIndex(), e);
