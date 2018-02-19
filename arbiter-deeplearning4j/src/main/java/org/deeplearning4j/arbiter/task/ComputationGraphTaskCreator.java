@@ -111,6 +111,7 @@ public class ComputationGraphTaskCreator implements TaskCreator {
         public OptimizationResult call() throws Exception {
 
             try {
+                log.info("Starting evaluation - thread {} - {}", Thread.currentThread().getId(), Thread.currentThread().getName());
                 OptimizationResult result = callHelper();
                 if(listeners != null && !listeners.isEmpty()){
                     CandidateInfo ci = new CandidateInfo(candidate.getIndex(), CandidateStatus.Complete, result.getScore(),
@@ -119,7 +120,7 @@ public class ComputationGraphTaskCreator implements TaskCreator {
                         try{
                             sl.onCandidateStatusChange(ci, runner, result);
                         } catch (Exception e){
-                            log.error("Error in status listener for candidate {}", candidate.getIndex(), e);
+                            log.error("Error in status listener {} for candidate {}", sl, candidate.getIndex(), e);
                         }
                     }
                 }
