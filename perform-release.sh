@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -xeu
 
 if [[ $# < 2 ]]; then
     echo "Usage: bash perform-release.sh release_version snapshot_version [staging_repository]"
