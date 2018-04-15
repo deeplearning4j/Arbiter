@@ -1,5 +1,5 @@
 #!groovy
-@Library('skymind@feature/feature/ssh-add-k8s-support') _
+@Library('skymind@feature/ssh-add-k8s-support') _
 
 /*
     To redefine some job/run parameters,
