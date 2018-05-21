@@ -1,3 +1,7 @@
+# IMPORTANT: THIS REPOSITORY HAS BEEN ARCHIVED AND ARBITER HAS BEEN MOVED
+Arbiter has been migrated to a sub-module of the mono-repository here: https://github.com/deeplearning4j/deeplearning4j
+All future development will continue at that repository, which should be used for all issues and pull requests.
+
 # Arbiter
 
 A tool dedicated to tuning (hyperparameter optimization) of machine learning models. Part of the DL4J Suite of Machine Learning / Deep Learning tools for the enterprise.
